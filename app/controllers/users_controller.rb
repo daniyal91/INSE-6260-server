@@ -51,6 +51,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def activate
+    @user = User.find(params[:id])
+    @user.status = "activated"
+    if @user.save
+      render json: {message: "User has been activated."}
+    else
+      render json: {message: "Something went wrong while activating user."}
+    end
+  end
+
+  def deactivate
+    @user = User.find(params[:id])
+    @user.status = "deactivated"
+    if @user.save
+      render json: {message: "User has been deactivated."}
+    else
+      render json: {message: "Something went wrong while deactivating user."}
+    end
+  end
+
   private
 
   def user_params
