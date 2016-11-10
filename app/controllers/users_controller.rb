@@ -15,10 +15,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = {first_name: params[:first_name], last_name: params[:last_name],
+    type = params[:type]
+    user = {first_name: params[:firstName], last_name: params[:lastName],
             email: params[:email], username: params[:username], password: params[:password],
-            gender: params[:gender], language: params[:language], address: params[:address], status: params[:status]}
-    @user = User.new(user)
+            gender: params[:gender], language: params[:language], address: params[:address], status: "deactivated"}
+    if type == "patient"
+      @user = Patient.new(user)
+    elsif type == "nurse"
+      @user = Nurse.new(user)
+    else
+    end
     if @user.save
       render json: {user: @user}
     else
