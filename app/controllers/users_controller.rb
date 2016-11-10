@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     else
     end
     if @user.save
+      UserMailer.register_email(@user).deliver_now
       render json: {user: @user}
     else
       render json: {message: @user.errors.full_messages}
