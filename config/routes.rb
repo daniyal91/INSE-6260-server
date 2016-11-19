@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   match 'session', to: 'session#options', via: [:options]
   post 'session' => 'session#create'
+
+  match 'services', to: 'services#options', via: [:options]
+  match 'services/:id', to: 'services#options', via: [:options]
+  resources :services
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
