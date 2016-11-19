@@ -5,7 +5,8 @@ class RequestsController < ApplicationController
   end
 
   def index
-    requests_all = Request.includes(:service)
+    patient_id = params[:patient_id]
+    requests_all = Request.where("patient_id = ?",patient_id).includes(:service)
     @requests = {}
     requests = []
     requests_all.each do |req|
