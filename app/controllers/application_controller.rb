@@ -13,4 +13,33 @@ class ApplicationController < ActionController::Base
 
     head(:ok) if request.request_method == "OPTIONS"
   end
+
+  def ensure_authenticated_user
+    if request.request_method == "OPTIONS"
+      head(:ok)
+    else
+      head :unauthorized unless current_user
+    end
+  end
+
+  # Returns the active user associated with the access token if available
+  def current_user
+    api_key = ApiKey.active.where(access_token: token).first
+    if api_key
+      return api_key.user
+    else
+      return nil
+    end
+  end
+
+  # Parses the access token from the header
+  def token
+    bearer = request.headers["HTTP_AUTHORIZATION"]
+    if bearer.present?
+      bearer.split.last
+    else
+      nil
+    end
+  end
+  
 end

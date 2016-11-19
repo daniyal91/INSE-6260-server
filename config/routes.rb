@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       get :deactivate
     end
   end
+
+  resources :api_keys
+
+  match 'session', to: 'session#options', via: [:options]
+  post 'session' => 'session#create'
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
