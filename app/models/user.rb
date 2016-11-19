@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 	self.inheritance_column = :role 
+  validates :email, uniqueness: true
+  validates :username, uniqueness: true
 
 	has_many :api_keys
  
