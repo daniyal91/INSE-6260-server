@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   match 'requests', to: 'requests#options', via: [:options]
   match 'requests/:id', to: 'requests#options', via: [:options]
   resources :requests
+
+  match 'nurse_availabilities', to: 'nurse_availabilities#options', via: [:options]
+  match 'nurse_availabilities/:id', to: 'nurse_availabilities#options', via: [:options]
+  resources :nurse_availabilities
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

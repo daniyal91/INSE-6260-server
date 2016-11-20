@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119091552) do
+ActiveRecord::Schema.define(version: 20161120051135) do
 
   create_table "api_keys", force: :cascade do |t|
     t.integer  "user_id"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(version: 20161119091552) do
     t.datetime "expired_at"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "nurse_availabilities", force: :cascade do |t|
+    t.integer  "nurse_id"
+    t.date     "available_date"
+    t.time     "available_time1"
+    t.time     "available_time2"
+    t.time     "available_time3"
+    t.time     "available_time4"
+    t.time     "available_time5"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "requests", force: :cascade do |t|
