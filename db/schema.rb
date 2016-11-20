@@ -24,7 +24,9 @@ ActiveRecord::Schema.define(version: 20161119091552) do
 
   create_table "requests", force: :cascade do |t|
     t.integer  "patient_id"
-    t.time     "preferred_time"
+    t.time     "preferred_time1"
+    t.time     "preferred_time2"
+    t.time     "preferred_time3"
     t.date     "preferred_date"
     t.string   "preferred_location"
     t.integer  "service_id"

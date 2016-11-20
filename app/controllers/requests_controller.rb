@@ -12,7 +12,10 @@ class RequestsController < ApplicationController
     requests_all.each do |req|
       request = {}
       request.merge!(id: req.id, patient_id: req.patient_id, preferred_date: req.preferred_date,
-                     preferred_time: req.preferred_time.strftime("%I:%M%p"), preferred_location: req.preferred_location,
+                     preferred_time1: req.preferred_time1.strftime("%I:%M%p"),
+                     preferred_time2: req.preferred_time2.strftime("%I:%M%p"),
+                     preferred_time3: req.preferred_time3.strftime("%I:%M%p"), 
+                     preferred_location: req.preferred_location,
                      service_id: req.service_id, service: req.service.name)
       requests.push(request)
     end
@@ -26,7 +29,8 @@ class RequestsController < ApplicationController
   end
 
   def create
-    request = {patient_id: params[:patientId], preferred_time: params[:preferredTime], 
+    request = {patient_id: params[:patientId], preferred_time1: params[:preferredTime1],
+              preferred_time2: params[:preferredTime2], preferred_time3: params[:preferredTime3], 
     					preferred_date: params[:preferredDate], preferred_location: params[:preferredLocation], 
     					service_id: params[:serviceId]}
     @request = Request.new(request)
@@ -58,7 +62,7 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.permit(:id, :patient_id, :preferred_time, :preferred_date, :preferred_location, :service_id)
+    params.permit(:id, :patient_id, :preferred_time1, :preferred_time2, :preferred_time3, :preferred_date, :preferred_location, :service_id)
   end
 
 end
